@@ -1,8 +1,15 @@
+'use client'
 
-export default function Home() {
+import Header from "@/src/components/Header"
+import Home from "@/src/components/Home"
+
+export default function Page() {
   return (
-    <div className='text-5xl'>
-      Movie Arena
+    <>
+    <div className='flex w-full'>
+      <Home/>
     </div>
+    </>
   )
+
 }
