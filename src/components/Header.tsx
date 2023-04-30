@@ -1,9 +1,10 @@
 'use client'
-import { useRouter } from 'next/navigation';
+import { useRouter, usePathname } from 'next/navigation';
 import React from 'react'
 import { HiOutlineSearch } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
+import { SlMenu } from "react-icons/sl";
 
 
 type Props = {}
@@ -12,40 +13,64 @@ const Header = (props: Props) => {
   const router = useRouter();
   const [showSearch, setShowSearch] = useState(false);
   const [query, setQuery] = useState("");
+  const pathname = usePathname();
 
-  const navigationHandler = (type:any) => {
+  const [showMenu, setShowMenu] = useState(true);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    setShowSearch(false);
+    setShowMenu(false);
+  }, [pathname])
+  const navigationHandler = (type: any) => {
     if (type === "movie") {
-        router.push("/explore/movie");
+      router.push("/explore/movie");
     } else {
       router.push("/explore/tv");
     }
-};
+  };
 
-const searchQueryHandler = (event:any) => {
-  if (event.key === "Enter" && query.length > 0) {
-    router.push(`/search/${query}`);
-  }
-};
+  const searchQueryHandler = (event: any) => {
+    if (event.key === "Enter" && query.length > 0) {
+      router.push(`/search/${query}`);
+    }
+  };
 
-const openSearch = () => {
-  setShowSearch(true);
-};
+  const openSearch = () => {
+    setShowSearch(true);
+  };
 
   return (
-    <header className='fixed w-full h-[60px] bg-[black] bg-opacity-25 backdrop-filter z-10 px-10 md:px-12'>
-      <div className='flex items-center justify-between'>
+    <header className='fixed flex items-center  w-full h-[60px] justify-between bg-[black] bg-opacity-25 backdrop-filter z-50 px-3 md:px-12'>
+      <div className='flex items-center  justify-between'>
         <img className='cursor-pointer h-[50px]' onClick={() => router.push("/")} src='https://raw.githubusercontent.com/ShariqAnsari88/movix/08be5dfede849e402b234aacdef044da750bed3c/src/assets/movix-logo.svg' alt='' />
           <div className='flex text-white font-medium cursor-pointer'>
             <a className='px-8' onClick={() => navigationHandler("movie")}>Movies</a>
             <a className='px-8' onClick={() => navigationHandler("tv")}>TV Shows</a>
             <HiOutlineSearch onClick={openSearch} />
           </div>
+
+        <div className={`flex z-20 md:hidden bg-black2 p-3 py-7 justify-center items-end flex-col absolute right-0 gap-4 ${showMenu ? 'top-14' : 'top-[-100px]'} transition-all duration-500 ease-in-out md:relative md:flex-row text-white font-medium cursor-pointer`}>
+          <a className='md:px-8' onClick={() => navigationHandler("movie")}>Movies</a>
+          <a className='md:px-8' onClick={() => navigationHandler("tv")}>TV Shows</a>
+          <HiOutlineSearch className='hidden md:block' onClick={openSearch} />
+        </div>
+
+      </div>
+      <div className='flex gap-2 md:hidden items-center justify-center'>
+        {
+          showMenu ?
+            <VscChromeClose onClick={() => setShowMenu(!showMenu)} className='text-white' /> :
+            <SlMenu onClick={() => setShowMenu(!showMenu)} className="text-white" />
+        }
+
+        <HiOutlineSearch className='text-white block md:hidden' onClick={openSearch} />
       </div>
 
       {showSearch && (
-        <div className=' w-full h-[60px] bg-white top-60'>
-          <div className='w-full flex items-center h-[40px] mt-[10px]'>
-            <input className='w-full h-16 bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
+        <div className=' w-full h-[60px] flex items-center'>
+          <div className='w-full flex items-center rounded-md p-4 bg-white'>
+            <input className='w-full rounded-md  bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
               placeholder="Search for a movie or tv show...."
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}

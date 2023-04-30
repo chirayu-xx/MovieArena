@@ -19,12 +19,12 @@ function SwitchTab({tabs, onTabChange}: Props) {
         onTabChange(tab,index)
     }
   return (
-    <div className='h-8  md:h-12 bg-white rounded-xl p-1'>
+    <div className='h-8  md:h-12 bg-white rounded-full p-1'>
         <div className='flex items-center relative h-6 md:h-10'>
             {tabs.map((tab,index) =>(
                 <span key={index}
                 onClick={() => activeTab(tab,index)} 
-                className={`h-full flex items-center justify-center w-[100px] text-black text-base relative z-10 cursor-pointer
+                className={`h-full flex items-center justify-center w-[60px] md:w-[100px] text-black text-base relative z-10 cursor-pointer
                 rounded-xl transition-all ease-in 
                 ${selectedTab === index? 'text-white bg-gradient-to-r from-black-lighter duration-300 transition via-black-light to-black' : ''}`}>
                     {tab}

@@ -15,7 +15,6 @@ type Props = {
 const List = ({ title, tabs, endpoint }: Props) => {
   const [category, setCategory] = useState(tabs[0].toLowerCase());
 
-  console.log(endpoint)
 
   let fetchUrl = `${endpoint}/${category}`;
   if (endpoint === "/popular" || endpoint === '/top_rated' || endpoint === '/now_playing'  ) {
@@ -29,7 +28,7 @@ const List = ({ title, tabs, endpoint }: Props) => {
   return (
     <div>
       <div className="flex justify-center w-full py-2">
-        <div className="flex justify-between w-full items-center">
+        <div className="flex gap-2 justify-between w-full items-center">
           <h1 className="text-xl md:text-3xl text-white font-semibold bg-transparent">
             {title}
           </h1>
