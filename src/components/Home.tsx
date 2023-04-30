@@ -50,7 +50,12 @@ export default function Home({}: Props) {
             <div>
               <span>Welcome.</span>
               <span>Millions of movies, TV shows and people to discover. Explore now.</span>
-              <div></div>
+              <div>
+                <input type="text" 
+                  placeholder="Search for a movie or tv show..."
+                />
+                <button>Search</button>
+              </div>
             </div>
          </div>
       </div>

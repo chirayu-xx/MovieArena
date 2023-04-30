@@ -1,6 +1,7 @@
 import { Providers } from '@/src/redux/Provider'
 import './globals.css'
 import Header from '@/src/components/Header'
+import Footer from '@/src/components/Footer'
 
 export const metadata = {
   title: 'Movie Arena',
@@ -19,6 +20,7 @@ export default function RootLayout({
         <Providers>
         {children}
         </Providers>
+        <Footer/>
         </body>
     </html>
   )

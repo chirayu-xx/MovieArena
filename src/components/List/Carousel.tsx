@@ -1,5 +1,6 @@
+'use client'
 import { Movie } from "@/typing";
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect } from "react";
 import {
   BsFillArrowLeftCircleFill,
   BsFillArrowRightCircleFill,
@@ -22,8 +23,8 @@ type Props = {
 function Carousel({ data, loading, endpoint }: Props) {
   const carouselContainer = useRef();
   const { url }: any = useSelector((state: RootState) => state.home);
+  const container = carouselContainer.current;
   const navigation = (dir: string) => {
-    const container = carouselContainer.current;
     const scrollAmount =
       dir === "left"
         //@ts-ignore
@@ -34,6 +35,7 @@ function Carousel({ data, loading, endpoint }: Props) {
       behavior: "smooth",
     });
   };
+  
   const skItem = () => {
     return (
       <div
