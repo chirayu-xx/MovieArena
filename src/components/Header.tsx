@@ -5,6 +5,7 @@ import { HiOutlineSearch } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { SlMenu } from "react-icons/sl";
+import Link from 'next/link';
 
 
 type Props = {}
@@ -44,13 +45,6 @@ const Header = (props: Props) => {
     setShowSearch(false);
     setShowMenu(false);
   }, [pathname ])
-  const navigationHandler = (type: any) => {
-    if (type === "movie") {
-      router.push("/explore/movie");
-    } else {
-      router.push("/explore/tv");
-    }
-  };
 
   const searchQueryHandler = (event: any) => {
     if (event.key === "Enter" && query.length > 0) {
@@ -67,22 +61,24 @@ const Header = (props: Props) => {
   return (
     <header className={`fixed  flex items-center  w-full h-[60px] justify-between ${showheader ?"top-0" : "top-[-200px]"} transition-all duration-600 bg-[black]/25  backdrop-filter z-50 px-3 md:px-12`}>
       <div className='flex items-center  justify-between'>
-        <img className='cursor-pointer h-[50px]' onClick={() => router.push("/")} src='https://raw.githubusercontent.com/ShariqAnsari88/movix/08be5dfede849e402b234aacdef044da750bed3c/src/assets/movix-logo.svg' alt='' />
+        <Link href={"/"}>
+          <img className='cursor-pointer h-[50px]' src='https://raw.githubusercontent.com/ShariqAnsari88/movix/08be5dfede849e402b234aacdef044da750bed3c/src/assets/movix-logo.svg' alt='' />
+        </Link>
           
-        <div className={`flex z-20 md:hidden bg-black2 p-3 py-7 justify-center items-end flex-col absolute right-0 gap-4 ${showMenu ? 'top-14' : 'top-[-100px]'} transition-all duration-500 ease-in-out md:relative md:flex-row text-white font-medium cursor-pointer`}>
-          <a className='md:px-8' onClick={() => navigationHandler("movie")}>Movies</a>
-          <a className='md:px-8' onClick={() => navigationHandler("tv")}>TV Shows</a>
+        <div className={`flex z-20 md:hidden bg-black2 p-3 py-7 justify-center items-end flex-col absolute right-0 gap-4 ${showMenu ? 'top-14' : 'top-[-200px]'} transition-all duration-500 ease-in-out md:relative md:flex-row text-white font-medium cursor-pointer`}>
+          <Link href={'/explore/movie'} className='px-8'>Movies</Link>
+          <Link href={'/explore/tv'} className='px-8'>TV Shows</Link>
           <HiOutlineSearch className='hidden md:block' onClick={openSearch} />
         </div>
 
       </div>
       <div className='md:flex  hidden text-white font-medium cursor-pointer'>
-            <a className='px-8' onClick={() => navigationHandler("movie")}>Movies</a>
-            <a className='px-8' onClick={() => navigationHandler("tv")}>TV Shows</a>
+            <Link href={'/explore/movie'} className='px-8'>Movies</Link>
+            <Link href={'/explore/tv'} className='px-8'>TV Shows</Link>
             <HiOutlineSearch onClick={openSearch} />
           </div>
 
-      <div className='flex gap-2 md:hidden items-center justify-center'>
+      <div className='flex  cursor-pointer gap-2 md:hidden items-center justify-center'>
         {
           showMenu ?
             <VscChromeClose onClick={() => setShowMenu(!showMenu)} className='text-white' /> :

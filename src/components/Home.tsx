@@ -1,38 +1,57 @@
 'use client'
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchDataFromApi } from "@/src/utils/api";
 import { getApiConfiguration, getGenres } from "../redux/features/homeSlice";
 import { RootState } from "../redux/store";
-import {Url} from '../../typing'
+import { Url } from '../../typing'
 import Carousel from "./List/List";
 import List from "./List/List";
+import { useRouter } from 'next/navigation';
+import useFetch from "@/hooks/useFetch";
+import { Img } from "./LazyLoadImage";
+
+
 
 type Props = {};
-export default function Home({}: Props) {
+export default function Home({ }: Props) {
   const dispatch = useDispatch();
-  const url:any= useSelector((state:RootState ) => state.home.url)
+  const [background, setBackground] = useState("");
+  const [query, setQuery] = useState("");
+  const router = useRouter();
+
+  const { data, loading } = useFetch("/movie/upcoming");
+
+  useEffect(() => {
+    //@ts-ignore
+    const bg = url.backdrop + data?.results?.[Math.floor(Math.random() * 20)]?.backdrop_path;
+    setBackground(bg);
+    console.log(bg)
+  }, [data])
+
+
+  const url: any = useSelector((state: RootState) => state.home.url)
   const fetch = () => {
     fetchDataFromApi("/configuration").then((res) => {
       const url = {
-        backdrop:res.images.secure_base_url + "original",
-        poster:res.images.secure_base_url + "original",
-        profile:res.images.secure_base_url + "original",
+        backdrop: res.images.secure_base_url + "original",
+        poster: res.images.secure_base_url + "original",
+        profile: res.images.secure_base_url + "original",
       }
       dispatch(getApiConfiguration(url));
     });
   };
-  const genresCall = async() => {
+  const genresCall = async () => {
     let promises: Array<Object> = []
     let endpoints = ['tv', 'movie']
-    let allGenres:any= {}
+    let allGenres: any = {}
     endpoints.forEach((url) => {
       promises.push(fetchDataFromApi(`/genre/${url}/list`))
     })
     const data = await Promise.all(promises);
     //@ts-ignore
-    data.map(({genres}) => {
+    data.map(({ genres }) => {
       return genres.map((item: any) => (allGenres[item.id] = item))
     })
     dispatch(getGenres(allGenres));
@@ -42,27 +61,44 @@ export default function Home({}: Props) {
     genresCall();
   }, []);
 
-  return(
+  const searchQueryHandler = (event: any) => {
+    if (event.key === "Enter" && query.length > 0) {
+      router.push(`/search/${query}`)
+    }
+  }
+
+  return (
     <div className="w-full p-10 md:p-32 m-2 overflow-x-hidden flex flex-col gap-20">
-        {/* home banner session */}
-      <div className="h-[200px]">
-         <div>
-            <div>
-              <span>Welcome.</span>
-              <span>Millions of movies, TV shows and people to discover. Explore now.</span>
-              <div>
-                <input type="text" 
-                  placeholder="Search for a movie or tv show..."
-                />
-                <button>Search</button>
-              </div>
-            </div>
-         </div>
+      {/* home banner session */}
+      <div className="w-full h-[450px] bg-black flex">
+        {!loading &&
+          <div className="w-full h-full absolute top-0 left-0 opacity-50 overflow-hidden">
+            <Img className="w-full h-full object-cover object-center" src={background} />
+          </div>
+        }
+
+        {/* opacity-layer */}
+        <div className="w-full h-[250px] bg-gradient-to-b from-transparent to-black-light absolute bottom-0 left-0"></div>
+
+        {/* contentwrapper */}
+        <div className="flex flex-col items-center text-center text-white relative max-w-[800px] m-auto">
+          <span className="text-8xl font-bold mb-[10px]">Welcome.</span>
+          <span className="text-lg font-medium mb-[40px]">Millions of movies, TV shows and people to discover. Explore now.</span>
+          <div className="flex items-center w-full">
+            <input type="text" className="w-[calc(100%-100px)] h-[50px] text-black bg-white outline-none border-0 rounded-l-3xl px-[15px] text-sm"
+              placeholder="Search for a movie or tv show..."
+              onChange={(e) => setQuery(e.target.value)}
+              onKeyUp={searchQueryHandler}
+            />
+            <button className="w-[100px] h-[50px] bg-gradient-to-r from-black-lighter duration-300 transition via-black-light to-black text-white outline-0 border-0 rounded-e-3xl text-base">Search</button>
+          </div>
+        </div>
       </div>
-    <List title="Trending" tabs={["Day", "Week"]} endpoint="/trending/all"/>
-      <List title="Now Playing" tabs={["Movie"]} endpoint="/now_playing"/>
-      <List title="What's Popular" tabs={["Movie", "Tv"]} endpoint="/popular"/>
-      <List title="Top Rated" tabs={["Movie", "Tv"]} endpoint="/top_rated"/>
+
+      <List title="Trending" tabs={["Day", "Week"]} endpoint="/trending/all" />
+      <List title="Now Playing" tabs={["Movie"]} endpoint="/now_playing" />
+      <List title="What's Popular" tabs={["Movie", "Tv"]} endpoint="/popular" />
+      <List title="Top Rated" tabs={["Movie", "Tv"]} endpoint="/top_rated" />
     </div>
   )
 }

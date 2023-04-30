@@ -23,8 +23,8 @@ type Props = {
 function Carousel({ data, loading, endpoint }: Props) {
   const carouselContainer = useRef();
   const { url }: any = useSelector((state: RootState) => state.home);
-  const container = carouselContainer.current;
   const navigation = (dir: string) => {
+    const container = carouselContainer.current;
     const scrollAmount =
       dir === "left"
         //@ts-ignore
