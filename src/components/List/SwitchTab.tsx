@@ -25,8 +25,8 @@ function SwitchTab({tabs, onTabChange}: Props) {
                 <span key={index}
                 onClick={() => activeTab(tab,index)} 
                 className={`h-full flex items-center justify-center w-[100px] text-black text-base relative z-10 cursor-pointer
-                rounded-xl
-                ${selectedTab === index? 'text-white bg-orange-500' : ''}`}>
+                rounded-xl transition-all ease-in 
+                ${selectedTab === index? 'text-white bg-gradient-to-r from-black-lighter duration-300 transition via-black-light to-black' : ''}`}>
                     {tab}
                 </span>
             ))}

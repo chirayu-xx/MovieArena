@@ -13,7 +13,7 @@ TMDB_TOKEN,
 
 export const fetchDataFromApi = async (url: string, params?: string) => {
     try {
-    const fetchUrl = `${BASE_URL}${url}?api_key=${apiKey}`
+    const fetchUrl = `${BASE_URL}/${url}?api_key=${apiKey}`
     const { data } = await axios.get(fetchUrl, {
         headers,
         params,
