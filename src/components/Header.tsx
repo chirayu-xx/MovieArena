@@ -6,7 +6,8 @@ import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { SlMenu } from "react-icons/sl";
 import Link from 'next/link';
-
+import Logo  from '../../logo/png/logo-no-background.png'
+import Image from 'next/image';
 
 type Props = {}
 
@@ -62,7 +63,7 @@ const Header = (props: Props) => {
     <header className={`fixed  flex items-center  w-full h-[60px] justify-between ${showheader ?"top-0" : "top-[-200px]"} transition-all duration-600 bg-[black]/25  backdrop-filter z-50 px-3 md:px-12`}>
       <div className='flex items-center  justify-between'>
         <Link href={"/"}>
-          <img className='cursor-pointer h-[50px]' src='https://raw.githubusercontent.com/ShariqAnsari88/movix/08be5dfede849e402b234aacdef044da750bed3c/src/assets/movix-logo.svg' alt='' />
+          <Image className='cursor-pointer' width={200} src={Logo} alt='' />
         </Link>
           
         <div className={`flex z-20 md:hidden bg-black2 p-3 py-7 justify-center items-end flex-col absolute right-0 gap-4 ${showMenu ? 'top-14' : 'top-[-200px]'} transition-all duration-500 ease-in-out md:relative md:flex-row text-white font-medium cursor-pointer`}>
@@ -90,7 +91,7 @@ const Header = (props: Props) => {
 
       {showSearch && (
         <div className='absolute left-0 m-0 w-full top-20 h-[60px] flex items-center'>
-          <div className='w-full flex items-center rounded-md p-4 bg-white'>
+          <div className='w-full flex items-center rounded-md  p-4 bg-white'>
             <input className='w-full rounded-md  bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
               placeholder="Search for a movie or tv show...."
               onChange={(e) => setQuery(e.target.value)}

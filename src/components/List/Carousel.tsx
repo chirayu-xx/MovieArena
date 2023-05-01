@@ -42,11 +42,11 @@ function Carousel({ data, loading, endpoint }: Props) {
         role="status"
         className="max-w-sm p-4 rounded shadow animate-pulse md:p-6 "
       >
-        <div className="flex items-center justify-center h-56 md:h-64  mb-4 bg-[#0a2955] rounded dark:bg-[#0a2955]"></div>
+        <div className="flex items-center justify-center h-48 md:h-52 mb-4 bg-[#0a2955] rounded dark:bg-[#0a2955]"></div>
 
         <div className="flex items-center mt-4 space-x-3">
           <div>
-            <div className="h-2.5 bg-[#0a2955] rounded-full dark:bg-[#0a2955] w-44 mb-2"></div>
+            <div className="h-2.5 bg-[#0a2955] rounded-full dark:bg-[#0a2955] w-40 mb-2"></div>
             <div className="w-24 h-2 bg-[#0a2955] rounded-full dark:bg-[#0a2955]"></div>
           </div>
         </div>
@@ -68,40 +68,43 @@ function Carousel({ data, loading, endpoint }: Props) {
           />
           {!loading ? (
             //@ts-ignore
-            <div ref={carouselContainer} className="flex gap-10 overflow-y-hidden m-0 p-0">
+            <div ref={carouselContainer} className="flex gap-32 overflow-y-hidden m-0 p-0">
               {data?.map((item: any) => {
                 const posterUrl = item.poster_path
                   ? url.poster + item.poster_path
                   : "";
                 return (
-                  <div
-                    key={item.id}
-                    className="w-28 md:w-48 cursor-pointer shrink-0"
-                  >
-                    <Link href={`/${item.media_type || endpoint}/${item.id
+                  
+                    <Link key={item.id}
+                    className="w-[125px] cursor-pointer shrink-0" href={`/${item.media_type || endpoint}/${item.id
                       }`}>
-                      <div className="relative w-full bg-cover bg-center rounded-md flex items-end justify-between p-1 mb-3">
-                        <Img src={posterUrl} className="rounded-lg w-52" />
-                        <div className="absolute w-12 md:w-14 top-[0px] right-[-25px] bg-opacity-0">
-                          <CircleRating rating={item.vote_average.toFixed(1)} />
+                        {/* posterblock  */}
+                      <div className="rounded-md flex flex-col  relative aspect-auto">
+                        <div className="w-40 md:w-52 min-h-[250px]">
+                        <Img src={posterUrl} className="h-full object-cover object-center rounded-md"/>
                         </div>
-                        <div className="md:flex hidden absolute left-0 bottom-[-10px]">
-                          <Genres id={item.genre_ids.slice(0, 2)} />
+                        <div className="w-14 top-0 right-[-70px] md:right-[-100px] absolute">
+                        <CircleRating  rating={item.vote_average.toFixed(1)}/>
+                        </div>
+                        <div className="absolute bottom-0 left-0">
+                        <Genres id={item.genre_ids.slice(0, 2)}/>
                         </div>
                       </div>
-                      <div className="text-white font-semibold text-base md:text-lg">
-                        {item.title || item.name}
-                      </div>
-                      <div className="text-gray font-semibold text-sm md:text-base">
-                        {dayjs(item.release_date).format("MMM D, YYYY")}
+                      {/* textblock  */}
+                      <div className="flex flex-col gap-2">
+                        <span className="w-full text-base text-white">{item.title || item.name}</span>
+                        <span className="text-gray text-sm">
+                          {dayjs(item.release_Date).format("MMM D, YYYY")}
+                        </span>
                       </div>
                     </Link>
-                  </div>
                 );
               })}
             </div>
           ) : (
-            <></>
+            <div className="min-h-[50px]"> 
+            {skItem()}
+            </div>
           )}
         </div> :
         <div className="flex gap-[10px]overflow-y-hidden mr-[-20px] ml-[-20px] px-[20px] py-0">

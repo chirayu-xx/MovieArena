@@ -15,7 +15,7 @@ const Footer = (props: Props) => {
         </Link>
         <Link className='flex text-center gap-2' href={'https://github.com/renesh22'} target='_blank'>
         <BsGithub/>
-        renesh_22
+        renesh22
         </Link>
       </div>
     </div>

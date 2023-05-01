@@ -22,7 +22,9 @@ module.exports = {
     "gray": '#949494'
     },
     extend: {
-
+      aspectRatio:{
+        '1/1.5' : '1 / 1.5'
+      }
     },
   },
   plugins: [],
