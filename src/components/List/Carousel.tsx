@@ -80,7 +80,7 @@ function Carousel({ data, loading, endpoint }: Props) {
                       }`}>
                         {/* posterblock  */}
                       <div className="rounded-md flex flex-col  relative aspect-auto">
-                        <div className="w-40 md:w-52 min-h-[250px]">
+                        <div className="w-40 md:w-52 min-h-[300px]">
                         <Img src={posterUrl} className="h-full object-cover object-center rounded-md"/>
                         </div>
                         <div className="w-14 top-0 right-[-70px] md:right-[-100px] absolute">

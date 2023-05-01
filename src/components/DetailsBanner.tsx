@@ -119,7 +119,7 @@ const DetailsBanner = ({ video, crew }: Props) => {
                   <div className="border-b-2 border-white/10 p-[15px] flex">
                     {data.status && (
                       <div className="mr-[10px] flex-col md:flex-row flex">
-                        <span className="mr-[10px] leading-[24px] font-boldd">Status: </span>
+                        <span className="mr-[10px] leading-[24px] font-bold">Status: </span>
                         <span className="mr-[10px] opacity-[0.5] leading-[24px]">{data.status}</span>
                       </div>
                     )}
@@ -140,8 +140,8 @@ const DetailsBanner = ({ video, crew }: Props) => {
                   </div>
 
                   {director?.length > 0 && (
-                    <div>
-                      <span className="mr-[10px] opacity-[0.5] leading-[24px] font-bold">Director: </span>
+                    <div className="border-b-2 border-white/10 p-[15px] flex">
+                      <span className="mr-[10px] leading-[24px] font-bold">Director: </span>
                       <span className="mr-[10px] opacity-[0.5] leading-[24px]">
                         {director?.map((d, i) => (
                           <span key={i}>
@@ -154,8 +154,8 @@ const DetailsBanner = ({ video, crew }: Props) => {
                   )}
 
                   {writer?.length > 0 && (
-                    <div>
-                      <span className="mr-[10px] opacity-[0.5] leading-[24px] font-bold">Writer: </span>
+                    <div className="border-b-2 border-white/10 p-[15px] flex">
+                      <span className="mr-[10px] leading-[24px] font-bold">Writer: </span>
                       <span className="mr-[10px] opacity-[0.5] leading-[24px]">
                         {writer?.map((d, i) => (
                           <span key={i}>
