@@ -16,7 +16,7 @@ import Genres from "./Genres";
 
 type Props = {
   data: Movie | any;
-  loading: boolean;
+  loading: Boolean;
   endpoint: string
 };
 
@@ -72,7 +72,7 @@ function Carousel({ data, loading, endpoint }: Props) {
               {data?.map((item: any) => {
                 const posterUrl = item.poster_path
                   ? url.poster + item.poster_path
-                  : "";
+                  : "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/no-poster.png?raw=true";
                 return (
                   
                     <Link key={item.id}
@@ -94,7 +94,7 @@ function Carousel({ data, loading, endpoint }: Props) {
                       <div className="flex flex-col gap-2">
                         <span className="w-full text-base text-white">{item.title || item.name}</span>
                         <span className="text-gray text-sm">
-                          {dayjs(item.release_Date).format("MMM D, YYYY")}
+                          {dayjs(item.release_Date || item.release_date).format("MMM D, YYYY")}
                         </span>
                       </div>
                     </Link>

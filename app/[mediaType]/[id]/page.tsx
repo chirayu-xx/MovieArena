@@ -18,7 +18,13 @@ const DetailPage = (props: Props) => {
   const { data: credits, loading: creditsLoading } = useFetch(
       `/${mediaType}/${id}/credits`
   );
-  const index = data?.results.findIndex( (element: Element) => element.name.includes("Official Trailer"))
+  var index = data?.results.findIndex( (element: Element) => element.name.includes("Official Trailer"))
+  if(index === -1){
+    index = data?.results.findIndex(
+      (element: Element) => element.type === 'Trailer'
+    )
+  }
+  console.log(index)
   return (
     <div>
       <DetailsBanner video={data?.results?.[index]} crew={credits?.crew} />
