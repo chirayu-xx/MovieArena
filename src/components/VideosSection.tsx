@@ -18,14 +18,14 @@ const VideosSection = ({ data, loading }: Props) => {
   return (
     <div className="mb-[50px] relative">
       {/* contentwrapper */}
-      <div className="flex flex-col gap-10 px-20 p-10 m-2">
-        <div className="text-[24px] text-white mb-[25px]">Official Videos</div>
+      <div className="flex flex-col gap-5 lg:gap-10 px-5 p-2 lg:px-20 lg:p-10">
+        <div className="text-xl lg:text-2xl text-white mb-[25px] md:text-2xl">Official Videos</div>
         {!loading ? (
           <div className="flex flex-nowrap gap-10 overflow-x-auto md:gap-20 m-0 p-0">
             {data?.results?.map((video: any) => (
               <div
                 key={video.id}
-                className="w-[320px] shrink-0 cursor-pointer"
+                className="w-full md:w-[320px] shrink-0 cursor-pointer"
                 onClick={() => {
                   setVideoId(video.key);
                   setShow(true);

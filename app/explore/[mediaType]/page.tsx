@@ -146,7 +146,7 @@ const Explore = (props: Props) => {
               placeholder="Sort by"
               className="w-full max-w-[500px] min-w-[250px]"
               classNames={{
-                control:(state) => "bg-[#173D77] rounded-full border-[#173D77]"
+                control:(state) => "bg-[#434654] rounded-full border-[#434654]"
             }} 
             />
           </div>
@@ -172,7 +172,7 @@ const Explore = (props: Props) => {
                 })}
               </InfiniteScroll>
             ) : (
-              <span className="text-lg text-white">Sorry, Results not found!</span>
+              <Loader/>
             )}
           </>
         )}

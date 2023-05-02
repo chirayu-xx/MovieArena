@@ -13,7 +13,7 @@ const Similar = ({mediaType, id}: Props) => {
     const title = mediaType === "tv" ? "Similar TV Shows" : "Similar Movies";
 
   return (
-    <div className='flex flex-col gap-10 px-20 p-10 m-2'>
+    <div className='flex flex-col gap-5 lg:gap-10 px-5 p-2 lg:px-20 lg:p-10 m-2'>
       <h1 className='text-xl md:text-2xl text-white'>{title}</h1>
       {
         data ? (<Carousel data={data?.results}
