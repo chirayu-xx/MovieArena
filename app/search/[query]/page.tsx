@@ -66,13 +66,12 @@ const SearchPage = (props: Props) => {
     );
   };
 
-  console.log(data);
   return (
     <div className="min-h-screen flex flex-col gap-10">
       {loading && <div className="min-h-screen w-full flex items-center justify-center"><Loader/></div>}
       {!loading && (
         <>
-          {data?.results.length > 0 ? (
+          {data?.results?.length > 0 ? (
             <>
               <div className="text-white m-2 px-10 text-3xl pt-20">
                 {`Search ${

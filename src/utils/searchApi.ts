@@ -6,12 +6,13 @@ const TMDB_TOKEN= process.env.NEXT_TMDB_TOKEN;
 
 
 const headers = {
-Authorization: "bearer " + 
-TMDB_TOKEN,
+    Authorization: "bearer " + TMDB_TOKEN,
 };
 
-export const searchDataFromApi = async (url: string, params?: string) => {
+export const searchDataFromApi = async (url: string, params?: any) => {
+    // console.log(params)
     try {
+
     const fetchUrl = `${BASE_URL}/${url}`
     const { data } = await axios.get(fetchUrl, {
         headers,

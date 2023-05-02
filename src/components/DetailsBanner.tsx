@@ -100,7 +100,7 @@ const DetailsBanner = ({ video, crew }: Props) => {
                     <div
                       onClick={() => {
                         setShow(true);
-                        setVideoId(video.key);
+                        setVideoId(video?.key);
                       }}
                     className="flex items-center  justify-center"
                     >

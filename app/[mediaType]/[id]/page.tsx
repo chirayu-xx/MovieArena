@@ -20,11 +20,10 @@ const DetailPage = (props: Props) => {
   );
   var index = data?.results.findIndex( (element: Element) => element.name.includes("Official Trailer"))
   if(index === -1){
-    index = data?.results.findIndex(
+     index = data?.results.findIndex(
       (element: Element) => element.type === 'Trailer'
-    )
-  }
-  console.log(index)
+      )
+    }
   return (
     <div>
       <DetailsBanner video={data?.results?.[index]} crew={credits?.crew} />

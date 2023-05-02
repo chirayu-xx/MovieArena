@@ -33,7 +33,7 @@ const MovieCard = ({ item, fromSearch, mediaType }: Props) => {
         </div>
         {!fromSearch && (
           <>
-            <div className="w-12 top-0 right-[-42px] absolute">
+            <div className="w-12 top-0 right-0 md:right-[-100px] absolute">
               <CircleRating rating={item.vote_average.toFixed(1)} />
             </div>
             <div className="absolute bottom-0 left-0">

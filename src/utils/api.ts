@@ -7,11 +7,10 @@ const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
 
 const headers = {
-Authorization: "bearer " + 
-TMDB_TOKEN,
+    Authorization: "bearer " + TMDB_TOKEN,
 };
 
-export const fetchDataFromApi = async (url: string, params?: string) => {
+export const fetchDataFromApi = async (url: string, params?: any) => {
     try {
     const fetchUrl = `${BASE_URL}/${url}?api_key=${apiKey}`
     const { data } = await axios.get(fetchUrl, {
