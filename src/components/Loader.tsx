@@ -12,7 +12,6 @@ function Loader({}: Props) {
               color="#2D75DA"
               ariaLabel="triangle-loading"
               wrapperStyle={{}}
-              wrapperClassName=""
               visible={true}
             />
           </div>

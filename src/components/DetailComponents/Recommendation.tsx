@@ -1,6 +1,6 @@
 import useFetch from '@/hooks/useFetch'
 import React from 'react'
-import Carousel from './List/Carousel'
+import Carousel from '../List/Carousel'
 
 type Props = {
   mediaType: string

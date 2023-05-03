@@ -182,7 +182,7 @@ const Explore = (props: Props) => {
                 })}
               </InfiniteScroll>
             ) : (
-              <span className="text-lg text-white">Sorry, Results not found!</span>
+             <div className="w-full h-full"><Loader/></div>
             )}
           </>
         )}

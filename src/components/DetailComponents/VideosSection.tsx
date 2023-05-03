@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Img } from "./LazyLoadImage";
-import Playbtn from "./Playbtn";
+import { Img } from "../LazyLoadImage";
+import Playbtn from "../Playbtn";
 import VideoPopup from "./VideoPopup";
 import { BsPlay } from "react-icons/bs";
 

@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect } from "react";
 import { useParams } from "next/navigation";
-import DetailsBanner from "@/src/components/DetailsBanner";
-import Cast from "@/src/components/Cast";
-import VideosSection from "@/src/components/VideosSection";
-import Similar from "@/src/components/Similar";
-import Recommendation from "@/src/components/Recommendation";
+import DetailsBanner from "@/src/components/DetailComponents/DetailsBanner";
+import Cast from "@/src/components/DetailComponents/Cast";
+import VideosSection from "@/src/components/DetailComponents/VideosSection";
+import Similar from "@/src/components/DetailComponents/Similar";
+import Recommendation from "@/src/components/DetailComponents/Recommendation";
 import useFetch from "@/hooks/useFetch";
 import { fetchImageUrl } from "@/src/utils/urlFetch";
 import { getApiConfiguration } from "@/src/redux/features/homeSlice";

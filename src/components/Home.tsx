@@ -11,6 +11,7 @@ import List from "./List/List";
 import { useRouter } from 'next/navigation';
 import useFetch from "@/hooks/useFetch";
 import { Img } from "./LazyLoadImage";
+import Loader from "./Loader";
 
 
 
@@ -20,6 +21,8 @@ export default function Home({ }: Props) {
   const [background, setBackground] = useState("");
   const [query, setQuery] = useState("");
   const router = useRouter();
+
+  const [initialDataLoading, setInitialDataLoading] = useState(true)
 
   const { data, loading } = useFetch("/movie/pop");
 
@@ -57,6 +60,10 @@ export default function Home({ }: Props) {
     })
     dispatch(getGenres(allGenres));
   }
+
+  setTimeout(() => {
+    setInitialDataLoading(false)
+  }, 700);
   useEffect(() => {
     fetch();
     genresCall();
@@ -71,6 +78,7 @@ export default function Home({ }: Props) {
   return (
     <div className="w-full p-10 lg:p-32 m-2 overflow-x-hidden flex flex-col gap-0 lg:gap-28">
       {/* home banner session */}
+      {!initialDataLoading ? (<>
       <div className="w-full h-[450px] bg-black flex">
         {!loading &&
           <div className="w-full h-full absolute top-0 left-0 opacity-50 overflow-hidden">
@@ -101,6 +109,12 @@ export default function Home({ }: Props) {
       <List title="What's Popular" tabs={["Movie", "Tv"]} endpoint="/popular" />
       <List title="Top Rated" tabs={["Movie", "Tv"]} endpoint="/top_rated" />
       </div>
+      </>
+      ): (
+        <div className="flex justify-center items-center w-full h-full">
+          <Loader/>
+        </div>
+      )}
     </div>
   )
 }

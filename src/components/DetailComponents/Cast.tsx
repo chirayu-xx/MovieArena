@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from "react-redux";
-import { RootState } from "../redux/store";
-import { Img } from "./LazyLoadImage";
+import { RootState } from "../../redux/store";
+import { Img } from "../LazyLoadImage";
 import Image from 'next/image';
 
 type Props = {

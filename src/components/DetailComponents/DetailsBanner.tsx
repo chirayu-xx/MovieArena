@@ -5,11 +5,11 @@ import { useParams } from "next/navigation";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
 import { RootState } from "@/src/redux/store";
-import Genres from "./List/Genres";
-import CircleRating from "./List/CircleRating";
+import Genres from "../List/Genres";
+import CircleRating from "../List/CircleRating";
 import { BsPlay } from "react-icons/bs";
 import VideoPopup from "./VideoPopup";
-import { Img } from "./LazyLoadImage";
+import { Img } from "../LazyLoadImage";
 import useFetch from "@/hooks/useFetch";
 
 type Props = {
@@ -114,7 +114,7 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
                           setShow(true);
                           setVideoId(video?.key);
                         }}
-                        className="flex items-center  justify-center"
+                        className="flex items-center  cursor-pointer justify-center"
                       >
                         <BsPlay
                           className="flex items-center  cursor-pointer"

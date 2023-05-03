@@ -1,6 +1,6 @@
 "use client";
 import useFetch from '@/hooks/useFetch';
-import SeasonBanner from '@/src/components/SeasonBanner';
+import SeasonBanner from '@/src/components/SeasonList/SeasonBanner';
 import { getApiConfiguration } from '@/src/redux/features/homeSlice';
 import { fetchImageUrl } from '@/src/utils/urlFetch';
 import { useParams } from 'next/navigation';

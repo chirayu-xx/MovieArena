@@ -2,11 +2,11 @@
 import useFetch from '@/hooks/useFetch';
 import { useParams } from 'next/navigation';
 import React from 'react'
-import { Img } from './LazyLoadImage';
+import { Img } from '../LazyLoadImage';
 import { useSelector } from 'react-redux';
-import { RootState } from '../redux/store';
-import CircleRating from './List/CircleRating';
-import Genres from './List/Genres';
+import { RootState } from '../../redux/store';
+import CircleRating from '../List/CircleRating';
+import Genres from '../List/Genres';
 import dayjs from 'dayjs';
 
 type Props = {
