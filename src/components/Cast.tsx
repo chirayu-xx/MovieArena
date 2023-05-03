@@ -24,7 +24,7 @@ const Cast = ({data, loading}: Props) => {
                         ? url.profile + item.profile_path
                         : "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/avatar.png?raw=true";
                         return (
-                            <div className='w-full text-center text-white' key={item.id}>
+                            <div className='w-full text-white' key={item.id}>
                                 <div className='w-[175px] h-[175px] rounded-md overflow-hidden mb-[15px]'>
                                     <Img className='w-full h-full' src={imgUrl} />
                                 </div>

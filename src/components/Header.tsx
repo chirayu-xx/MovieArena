@@ -92,7 +92,7 @@ const Header = (props: Props) => {
       {showSearch && (
         <div className='absolute left-0 m-0 w-full top-20 h-[60px] flex items-center'>
           <div className='w-full flex items-center rounded-md  p-4 bg-white'>
-            <input className='w-full rounded-md  bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
+            <input autoFocus className='w-full rounded-md  bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
               placeholder="Search for a movie or tv show...."
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}

@@ -31,6 +31,8 @@ export default function Home({ }: Props) {
 
 
   const url: any = useSelector((state: RootState) => state.home.url)
+
+  // console.log(url)
   const fetch = () => {
     fetchDataFromApi("/configuration").then((res) => {
       const url = {

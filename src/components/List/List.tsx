@@ -29,7 +29,7 @@ const List = ({ title, tabs, endpoint }: Props) => {
     setCategory(tab.toLowerCase());
   };
   return (
-    <div>
+    <div className="flex flex-col gap-2">
       <div className="flex justify-center w-full py-2">
         <div className="flex gap-2 justify-between w-full items-center">
           <h1 className="text-xl md:text-3xl text-white font-semibold bg-transparent">
@@ -38,8 +38,7 @@ const List = ({ title, tabs, endpoint }: Props) => {
           <SwitchTab tabs={tabs} onTabChange={onTabChange} />
         </div>
       </div>
-      
-        <Carousel
+      <Carousel
         endpoint={category.toLowerCase()}
         loading={loading}
         data={data?.results}

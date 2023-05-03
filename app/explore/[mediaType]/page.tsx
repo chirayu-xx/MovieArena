@@ -1,6 +1,4 @@
 "use client";
-
-import useFetch from "@/hooks/useFetch";
 import { searchDataFromApi } from "@/src/utils/searchApi";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -8,6 +6,11 @@ import { Triangle } from "react-loader-spinner";
 import Select from "react-select";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "@/src/components/MovieCard";
+import useFetch from "@/hooks/useFetch";
+import { getApiConfiguration } from "@/src/redux/features/homeSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "@/src/redux/store";
+import { fetchImageUrl } from "@/src/utils/urlFetch";
 
 type Props = {};
 
@@ -29,16 +32,23 @@ const sortbyData = [
 const Explore = (props: Props) => {
   const [data, setData] = useState(null);
   const [pageNum, setPageNum] = useState(1);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const [genre, setGenre] = useState(null);
   const [sortby, setSortby] = useState(null);
   const { mediaType } = useParams();
-
-  console.log(mediaType);
   const { data: genresData } = useFetch(`/genre/${mediaType}/list`);
+  const url: any = useSelector((state: RootState) => state.home.url)
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
+  useEffect(() => {
+    const fetchImageData = async () => {
+      const url = await fetchImageUrl();
+      dispatch(getApiConfiguration(url));
+    };
+    fetchImageData();
+  }, [])
   const fetchInitialData = () => {
     setLoading(false);
     searchDataFromApi(`/discover/${mediaType}?api_key=${apiKey}`, filters).then(
@@ -113,7 +123,7 @@ const Explore = (props: Props) => {
     fetchInitialData();
   };
 
-  console.log(data);
+
   return (
     <div className="min-[700px] py-[100px]">
       <div className="flex flex-col  gap-10">
@@ -146,7 +156,7 @@ const Explore = (props: Props) => {
               placeholder="Sort by"
               className="w-full max-w-[500px] min-w-[250px]"
               classNames={{
-                control:(state) => "bg-[#434654] rounded-full border-[#434654]"
+                control:(state) => "bg-[#173D77] rounded-full border-[#173D77]"
             }} 
             />
           </div>
@@ -172,7 +182,7 @@ const Explore = (props: Props) => {
                 })}
               </InfiniteScroll>
             ) : (
-              <Loader/>
+              <span className="text-lg text-white">Sorry, Results not found!</span>
             )}
           </>
         )}

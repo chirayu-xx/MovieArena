@@ -6,6 +6,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { searchDataFromApi } from "@/src/utils/searchApi";
 import { Triangle } from "react-loader-spinner";
 import MovieCard from "@/src/components/MovieCard";
+import { fetchImageUrl } from "@/src/utils/urlFetch";
+import { getApiConfiguration } from "@/src/redux/features/homeSlice";
+import { useDispatch } from "react-redux";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -13,6 +16,7 @@ type Props = {};
 
 const SearchPage = (props: Props) => {
   const [data, setData] = useState(null);
+  const dispatch = useDispatch()
   const [pageNum, setPageNum] = useState(1);
   const [loading, setLoading] = useState(false);
   const { query } = useParams();
@@ -44,6 +48,14 @@ const SearchPage = (props: Props) => {
       setPageNum((prev) => prev + 1);
     });
   };
+
+  useEffect(() => {
+    const fetchImageData = async () => {
+      const url = await fetchImageUrl();
+      dispatch(getApiConfiguration(url));
+    };
+    fetchImageData();
+  }, [])
 
   useEffect(() => {
     setPageNum(1);

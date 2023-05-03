@@ -15,10 +15,10 @@ const VideoPopup = ({show, setShow, videoId, setVideoId}: Props) => {
     };
 
   return (
-    <div className={`flex ${show ? 'opacity-100' : 'hidden'} justify-center backdrop-blur-lg items-center fixed top-1/4 left-12 lg:left-1/4 z-50 `}>
-        <div className={`absolute top-0 left-0 backdrop-blur-xl w-full h-full`}
+    <div className={`flex ${show ? 'opacity-100 scale-100' : ' scale-0'} justify-center transition-all ease-out duration-3x 00  w-full h-full backdrop-blur-lg items-center fixed top-0 left-0 z-50 `}>
+        <div className={`absolute z-20 top-0 left-0 backdrop-blur-xl w-full h-full`}
  onClick={hidePopup}></div>
-        <div className='relative w-full sm:w-[640px] md:w-[800px] aspect-w-16 aspect-video bg-white transform scale-20 transition-transform duration-250'>
+        <div className='relative w-full sm:w-[640px] md:w-[800px] aspect-w-16 aspect-video bg-white transform scale-20 transition-transform z-30  duration-250'>
             <span className='absolute right-0 text-white cursor-pointer top-[-20px]' onClick={hidePopup}>
                 Close
             </span>

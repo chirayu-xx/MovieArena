@@ -15,7 +15,6 @@ type Props = {
 
 const MovieCard = ({ item, fromSearch, mediaType }: Props) => {
   const url: any = useSelector((state: RootState) => state.home.url);
-
   const posterUrl = item.poster_path ? url.poster + item.poster_path : "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/no-poster.png?raw=true";
   return (
     <Link
