@@ -10,12 +10,14 @@ import useFetch from "@/hooks/useFetch";
 import { fetchImageUrl } from "@/src/utils/urlFetch";
 import { getApiConfiguration } from "@/src/redux/features/homeSlice";
 import { useDispatch } from "react-redux";
+import SeasonList from "@/src/components/SeasonList/SeasonList";
 
 type Props = {};
 
 const DetailPage = (props: Props) => {
   const dispatch = useDispatch();
   const { mediaType, id } = useParams();
+  const { data:mediaData , loading:dataLoading } = useFetch(`/${mediaType}/${id}`);
   const { data, loading } = useFetch(`/${mediaType}/${id}/videos`);
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediaType}/${id}/credits`
@@ -29,6 +31,9 @@ const DetailPage = (props: Props) => {
     );
   }
 
+  
+
+
   useEffect(() => {
     const fetchImageData = async () => {
       const url = await fetchImageUrl();
@@ -38,8 +43,11 @@ const DetailPage = (props: Props) => {
   }, []);
   return (
     <div>
-      <DetailsBanner video={data?.results?.[index]} crew={credits?.crew} />
+      <DetailsBanner data={mediaData} loading={dataLoading} video={data?.results?.[index]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
+      {
+        mediaType === "tv" && <SeasonList id={id} data={mediaData?.seasons} loading={dataLoading} />
+      }
       <VideosSection data={data} loading={loading} />
       <Similar mediaType={mediaType} id={id} />
       <Recommendation mediaType={mediaType} id={id} />

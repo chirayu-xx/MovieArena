@@ -9,6 +9,7 @@ import MovieCard from "@/src/components/MovieCard";
 import { fetchImageUrl } from "@/src/utils/urlFetch";
 import { getApiConfiguration } from "@/src/redux/features/homeSlice";
 import { useDispatch } from "react-redux";
+import Loader from "@/src/components/Loader";
 
 const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -62,21 +63,7 @@ const SearchPage = (props: Props) => {
     fetchInitialData();
   }, [query]);
 
-  const Loader = () => {
-    return (
-      <div className="flex w-full items-center justify-center">
-        <Triangle
-          height="100"
-          width="100"
-          color="#2D75DA"
-          ariaLabel="triangle-loading"
-          wrapperStyle={{}}
-          wrapperClassName=""
-          visible={true}
-        />
-      </div>
-    );
-  };
+  
 
   return (
     <div className="min-h-screen flex flex-col gap-10">

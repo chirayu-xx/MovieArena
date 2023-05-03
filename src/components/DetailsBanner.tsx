@@ -15,20 +15,22 @@ import useFetch from "@/hooks/useFetch";
 type Props = {
   video: string;
   crew: string;
+  data:any,
+  loading:Boolean
 };
 
-const DetailsBanner = ({ video, crew }: Props) => {
+const DetailsBanner = ({ video, crew, data, loading }: Props) => {
   const [show, setShow] = useState(false);
   const [videoId, setVideoId] = useState(null);
 
   const { mediaType, id } = useParams();
-  const { data, loading } = useFetch(`/${mediaType}/${id}`);
   const url: any = useSelector((state: RootState) => state.home.url);
   const _genres = data?.genres?.map((g) => g.id);
   const director = crew?.filter((f) => f.job === "Director");
   const writer = crew?.filter(
     (f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer"
   );
+
 
   const toHoursAndMinutes = (totalMinutes: any) => {
     const hours = Math.floor(totalMinutes / 60);

@@ -21,7 +21,7 @@ export default function Home({ }: Props) {
   const [query, setQuery] = useState("");
   const router = useRouter();
 
-  const { data, loading } = useFetch("/movie/upcoming");
+  const { data, loading } = useFetch("/movie/pop");
 
   useEffect(() => {
     //@ts-ignore
