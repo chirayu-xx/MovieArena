@@ -1,5 +1,6 @@
 "use client";
 import useFetch from '@/hooks/useFetch';
+import Episodes from '@/src/components/SeasonList/Episodes';
 import SeasonBanner from '@/src/components/SeasonList/SeasonBanner';
 import { getApiConfiguration } from '@/src/redux/features/homeSlice';
 import { fetchImageUrl } from '@/src/utils/urlFetch';
@@ -22,10 +23,11 @@ const Seasonpage = (props: Props) => {
   }, []);
   const {id, season_number} = useParams();
   const { data, loading } = useFetch(`/tv/${id}/season/${season_number}`);
-  console.log(data);
+
   return (
     <div className = 'min-h-screen'>
         <SeasonBanner loading = {loading} data = {data} />
+        <Episodes episodes = {data?.episodes}/>
     </div>
   )
 }

@@ -19,8 +19,6 @@ const SeasonBanner = ({ data, loading }: Props) => {
     const PosterFallback =
         "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/no-poster.png?raw=true";
 
-    console.log(data)
-
     return (
         <div className="w-full bg-black pt-[200px] mb-[50px]">
             <>

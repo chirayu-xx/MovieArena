@@ -24,7 +24,7 @@ export default function Home({ }: Props) {
 
   const [initialDataLoading, setInitialDataLoading] = useState(true)
 
-  const { data, loading } = useFetch("/movie/pop");
+  const { data, loading } = useFetch("/movie/popular");
 
   useEffect(() => {
     //@ts-ignore
