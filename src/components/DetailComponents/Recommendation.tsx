@@ -1,3 +1,4 @@
+//@ts-nocheck
 import useFetch from '@/hooks/useFetch'
 import React from 'react'
 import Carousel from '../List/Carousel'

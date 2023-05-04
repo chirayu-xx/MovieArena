@@ -10,13 +10,13 @@ import CircleRating from "../List/CircleRating";
 import { BsPlay } from "react-icons/bs";
 import VideoPopup from "./VideoPopup";
 import { Img } from "../LazyLoadImage";
-import useFetch from "@/hooks/useFetch";
+import DetailSkeleton from "../Skeleton";
 
 type Props = {
   video: string;
   crew: string;
-  data:any,
-  loading:Boolean
+  data: any;
+  loading: Boolean;
 };
 
 const DetailsBanner = ({ video, crew, data, loading }: Props) => {
@@ -31,7 +31,6 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
     (f) => f.job === "Screenplay" || f.job === "Story" || f.job === "Writer"
   );
 
-
   const toHoursAndMinutes = (totalMinutes: any) => {
     const hours = Math.floor(totalMinutes / 60);
     const minutes = totalMinutes % 60;
@@ -40,30 +39,12 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
   const PosterFallback =
     "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/no-poster.png?raw=true";
 
-  const skItem = () => {
-    return (
-      <div
-        role="status"
-        className="max-w-sm p-4 rounded shadow animate-pulse md:p-6 "
-      >
-        <div className="flex items-center justify-center h-56 md:h-64  mb-4 bg-[#0a2955] rounded dark:bg-[#0a2955]"></div>
-
-        <div className="flex items-center mt-4 space-x-3">
-          <div>
-            <div className="h-2.5 bg-[#0a2955] rounded-full dark:bg-[#0a2955] w-44 mb-2"></div>
-            <div className="w-24 h-2 bg-[#0a2955] rounded-full dark:bg-[#0a2955]"></div>
-          </div>
-        </div>
-        <span className="sr-only">Loading...</span>
-      </div>
-    );
-  };
 
   return (
     <div className="w-full bg-black pt-[200px] mb-[50px]">
       {!loading ? (
         <>
-          {!!data && (
+          {!!data ? (
             <>
               <div className="w-full h-full absolute top-0 left-0 opacity-[0.1] overflow-hidden">
                 <Img
@@ -72,7 +53,6 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
                 />
               </div>
               {/* opacity-layer */}
-
               <div className="w-full h-[250px] bg-gradient-to-b from-white/0 via-black to-black absolute bottom-0 left-0"></div>
               {/* contentwrapper */}
               <div className="w-full max-w-[1200px] mx-auto px-10 md:px-20">
@@ -114,7 +94,7 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
                           setShow(true);
                           setVideoId(video?.key);
                         }}
-                        className="flex items-center  cursor-pointer justify-center"
+                        className="flex items-center  cursor-pointer  justify-center"
                       >
                         <BsPlay
                           className="flex items-center  cursor-pointer"
@@ -223,26 +203,12 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
                 />
               </div>
             </>
+          ) : (
+            <div className="max-w-5xl flex justify-center"><DetailSkeleton/></div>
           )}
         </>
       ) : (
-        <>
-          <div className="flex relative flex-col gap-[25px]">
-            {/* left */}
-            <div className="shrink-0 w-full block rounded-xl aspect-[1/1.5]"></div>
-            {/* right */}
-            <div className="w-full">
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-              {skItem()}
-            </div>
-          </div>
-        </>
+        <div className="max-w-5xl flex justify-center"><DetailSkeleton/></div>
       )}
     </div>
   );

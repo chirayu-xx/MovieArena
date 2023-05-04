@@ -13,13 +13,24 @@ import { RootState } from "@/src/redux/store";
 import Link from "next/link";
 import CircleRating from "./CircleRating";
 import Genres from "./Genres";
-import Skeleton from "../Skeleton";
+
+import Skeleton from "react-loading-skeleton";
+import { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 type Props = {
   data: Movie | any;
   loading: Boolean;
   endpoint: string
 };
+
+const ListSkeleton = () => {
+  return (
+    <SkeletonTheme baseColor="#0a2955" highlightColor="#04152d">
+      <Skeleton height={300} width={200}/>
+    </SkeletonTheme>
+  )
+}
 
 function Carousel({ data, loading, endpoint }: Props) {
   const carouselContainer = useRef();
@@ -41,7 +52,6 @@ function Carousel({ data, loading, endpoint }: Props) {
 
   return (
     <div className="relative">
-
       <div>
         <BsFillArrowLeftCircleFill
           onClick={() => navigation("left")}
@@ -88,16 +98,13 @@ function Carousel({ data, loading, endpoint }: Props) {
           </div>
         ) : (
           <div className="flex gap-[10px] overflow-y-hidden mr-[-20px] ml-[-20px] md:mr-0 md:ml-0 px-[20px]">
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
-            <Skeleton />
+            <ListSkeleton/>
+            <ListSkeleton/>
+            <ListSkeleton/>
+            <ListSkeleton/>
+            <ListSkeleton/>
+            <ListSkeleton/>
+            <ListSkeleton/>
           </div>
         )}
       </div>

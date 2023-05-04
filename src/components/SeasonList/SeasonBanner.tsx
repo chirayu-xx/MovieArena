@@ -8,6 +8,7 @@ import { RootState } from '../../redux/store';
 import CircleRating from '../List/CircleRating';
 import Genres from '../List/Genres';
 import dayjs from 'dayjs';
+import DetailSkeleton from '../Skeleton';
 
 type Props = {
     data: any,
@@ -22,7 +23,7 @@ const SeasonBanner = ({ data, loading }: Props) => {
     return (
         <div className="w-full bg-black pt-[200px] mb-[50px]">
             <>
-                {!!data && (
+                {!!data ? (
                     <>
                         <div className="w-full h-full absolute top-0 left-0 opacity-[0.1] overflow-hidden">
                             <Img
@@ -90,7 +91,7 @@ const SeasonBanner = ({ data, loading }: Props) => {
                             </div>
                         </div>
                     </>
-                )}
+                ): <div className="max-w-5xl flex justify-center"><DetailSkeleton/></div>}
             </>
         </div>
     )

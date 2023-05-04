@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import useFetch from '@/hooks/useFetch';
 import Episodes from '@/src/components/SeasonList/Episodes';

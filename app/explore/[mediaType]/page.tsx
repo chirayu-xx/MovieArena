@@ -1,3 +1,4 @@
+//@ts-nocheck
 "use client";
 import { searchDataFromApi } from "@/src/utils/searchApi";
 import { useParams } from "next/navigation";
@@ -78,7 +79,7 @@ const Explore = (props: Props) => {
   };
   const Loader = () => {
     return (
-      <div className="flex w-full items-center justify-center">
+      <div className="flex w-full min-h-screen items-center justify-center">
         <Triangle
           height="100"
           width="100"
@@ -100,7 +101,7 @@ const Explore = (props: Props) => {
     fetchInitialData();
   }, [mediaType]);
 
-  const onChange = (selectedItems, action) => {
+  const onChange = (selectedItems: any, action: any) => {
     if (action.name === "sortby") {
       setSortby(selectedItems);
       if (action.action !== "clear") {

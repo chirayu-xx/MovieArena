@@ -48,7 +48,10 @@ const DetailPage = (props: Props) => {
       {
         mediaType === "tv" && <SeasonList id={id} data={mediaData?.seasons} loading={dataLoading} />
       }
-      <VideosSection data={data} loading={loading} />
+      {
+        data?.results.length && 
+        <VideosSection data={data} loading={loading} />
+      }
       <Similar mediaType={mediaType} id={id} />
       <Recommendation mediaType={mediaType} id={id} />
     </div>
