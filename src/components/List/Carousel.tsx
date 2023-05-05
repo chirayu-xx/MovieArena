@@ -26,7 +26,7 @@ type Props = {
 
 const ListSkeleton = () => {
   return (
-    <SkeletonTheme baseColor="#0a2955" highlightColor="#04152d">
+    <SkeletonTheme baseColor="#23351F" highlightColor="#3A6130">
       <Skeleton height={300} width={200}/>
     </SkeletonTheme>
   )

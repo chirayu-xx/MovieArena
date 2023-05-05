@@ -9,7 +9,7 @@ function Loader({}: Props) {
             <Triangle
               height="100"
               width="100"
-              color="#2D75DA"
+              color="#3A6130"
               ariaLabel="triangle-loading"
               wrapperStyle={{}}
               visible={true}

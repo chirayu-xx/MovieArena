@@ -88,7 +88,7 @@ const Explore = (props: Props) => {
         <Triangle
           height="100"
           width="100"
-          color="#2D75DA"
+          color="#3A6130"
           ariaLabel="triangle-loading"
           wrapperStyle={{}}
           visible={true}
@@ -132,7 +132,7 @@ const Explore = (props: Props) => {
 
   return (
     <div className="min-[700px] py-[100px]">
-      <div className="flex flex-col  gap-10">
+      <div className="flex flex-col gap-3 md:gap-6">
         <div className="flex w-full justify-between mb-10 px-10 flex-col md:flex-row">
           <div className="text-2xl md:text-3xl text-white">
             {mediaType === "tv" ? "Explore TV Shows" : "Explore Movies"}
