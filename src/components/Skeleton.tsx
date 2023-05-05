@@ -9,7 +9,7 @@ type Props = {}
 const DetailSkeleton = (props: Props) => {
   return (
     
-    <SkeletonTheme baseColor="#0a2955" highlightColor="#04152d">
+    <SkeletonTheme baseColor="#23351F" highlightColor="#3A6130">
     <div className="flex flex-col md:flex-row gap-10 max-w-xl">
       <Skeleton width={390} height={500} className="h-full w-full" />
       <div className="flex gap-3 flex-col">

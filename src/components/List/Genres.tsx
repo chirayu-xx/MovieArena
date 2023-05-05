@@ -15,7 +15,7 @@ const Genres = ({id}: Props) => {
         {id?.map((g) => {
             if(!genres[g]?.name) return
             return(
-                <div className='bg-pink py-1 px-1 text-xs rounded-md text-white
+                <div className='bg-pink py-1 px-1 text-xs rounded-md text-black3
                  whitespace-nowrap' key={g}>
                     {genres[g]?.name}
                 </div>

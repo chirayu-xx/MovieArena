@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { SlMenu } from "react-icons/sl";
 import Link from 'next/link';
-import Logo  from '../../logo/png/logo-no-background.png'
+import Logo  from '../../logo/png/logo.png'
 import Image from 'next/image';
 
 type Props = {}

@@ -10,16 +10,14 @@ module.exports = {
   ],
   theme: {
     colors:{
-    'black': "#04152d",
-    "black2": "#041226",
+    'black': "#141A10",
+    "black2": "#23351F",
     "black3": "#020c1b",
-    "black-lighter": "#1c4b91",
-    "black-light": "#173d77",
-    "pink": "#da2f68",
-    "orange": "#f89e00",
-    "gradient": "bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500",
+    "black-lighter": "#6A9563",
+    "black-light": "#3A6130",
+    "pink": "#96C008",
     "white": '#EBECF0',
-    "gray": '#949494'
+    "gray": '#949494',
     },
     extend: {
       aspectRatio:{
