@@ -16,6 +16,7 @@ type Props = {
 }
 
 const SeasonBanner = ({ data, loading }: Props) => {
+    console.log(data)
     const url: any = useSelector((state: RootState) => state.home.url);
     const PosterFallback =
         "https://github.com/ShariqAnsari88/movix/blob/main/src/assets/no-poster.png?raw=true";

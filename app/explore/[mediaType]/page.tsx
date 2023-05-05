@@ -8,10 +8,10 @@ import Select from "react-select";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "@/src/components/MovieCard";
 import useFetch from "@/hooks/useFetch";
-import { getApiConfiguration } from "@/src/redux/features/homeSlice";
+import { getApiConfiguration, getGenres } from "@/src/redux/features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/src/redux/store";
-import { fetchImageUrl } from "@/src/utils/urlFetch";
+import { fetchGenres, fetchImageUrl } from "@/src/utils/urlFetch";
 
 type Props = {};
 
@@ -48,7 +48,12 @@ const Explore = (props: Props) => {
       const url = await fetchImageUrl();
       dispatch(getApiConfiguration(url));
     };
+    const genresCall = async() => {
+      const data = await fetchGenres();
+      dispatch(getGenres(data))
+    }
     fetchImageData();
+    genresCall();
   }, [])
   const fetchInitialData = () => {
     setLoading(false);

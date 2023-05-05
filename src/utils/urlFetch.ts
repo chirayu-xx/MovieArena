@@ -1,3 +1,5 @@
+
+import { getGenres } from "../redux/features/homeSlice";
 import { fetchDataFromApi } from "./api";
 
 export const fetchImageUrl = async () => {
@@ -9,3 +11,19 @@ export const fetchImageUrl = async () => {
     };
     return url;
   };
+
+
+  export const fetchGenres = async () => {
+      let promises: Array<Object> = []
+      let endpoints = ['tv', 'movie']
+      let allGenres: any = {}
+      endpoints.forEach((url) => {
+        promises.push(fetchDataFromApi(`/genre/${url}/list`))
+      })
+      const data = await Promise.all(promises);
+      //@ts-ignore
+      data.map(({ genres }) => {
+        return genres.map((item: any) => (allGenres[item.id] = item))
+      })
+     return allGenres
+  }
