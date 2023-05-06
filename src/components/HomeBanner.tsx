@@ -13,29 +13,32 @@ const HomeBanner = (props: Props) => {
   const [bannerData, setBannerData] = useState(null);
   const [background, setBackground] = useState("");
   const url: any = useSelector((state: RootState) => state.home.url)
-
+  
   useEffect(() => {
     const banner = data?.results[Math.floor(Math.random() * 20)]
     setBannerData(banner)
     setBackground(url.backdrop + banner?.backdrop_path)
   }, [data])
+  if(bannerData){
+    const {data : videodata, loading: videoloading} = useFetch(`/movie/${bannerData?.id}/videos`)
+    console.log(videodata)
+  }
+
   return (
-    <div className="w-full h-[450px] bg-black flex">
+    <div className="w-full h-[450px] bg-black flex relative">
       {!loading &&
-        <div className="w-full h-full absolute top-0 left-0 opacity-50 overflow-hidden">
-          <Img className="w-full h-full object-cover object-center" src={background} />
-        </div>
+        <>
+              <div className="relative w-full h-full shadow-2xl overflow-hidden text-center">
+                <img src={background} className='w-full h-full'/>
+                <h1 className='w-full h-full font-extrabold absolute top-0 left-0 flex justify-center items-center text-white text-7xl bg-[#000] mix-blend-multiply'>{bannerData?.title}</h1>
+                </div>
+                {/* <p  className="text-lg">More text here</p> */}
+        </>
       }
-
       {/* opacity-layer */}
-      <div className="w-full h-[150px] lg:h-[200px] bg-gradient-to-b from-white/0 via-black hidden lg:block to-black absolute  md:bottom-[-30px] left-0"></div>
-
-      {/* contentwrapper */}
-      <div className="flex flex-col items-center text-center text-white relative max-w-[800px] m-auto">
-        <span className="text-3xl md:text-6xl lg:text-4xl font-bold mt-[450px]">{bannerData?.original_title}</span>
-      </div>
     </div>
   )
 }
+
 
 export default HomeBanner

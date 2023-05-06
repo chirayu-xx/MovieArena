@@ -74,8 +74,8 @@ const Header = (props: Props) => {
 
       </div>
       <div className='md:flex  hidden text-white font-medium cursor-pointer'>
-            <Link href={'/explore/movie'} className='px-8'>Movies</Link>
-            <Link href={'/explore/tv'} className='px-8'>TV Shows</Link>
+            <Link href={'/explore/movie'} className='hover:text-black-lighter px-8'>Movies</Link>
+            <Link href={'/explore/tv'} className='px-8 hover:text-black-lighter'>TV Shows</Link>
             <HiOutlineSearch onClick={openSearch} />
           </div>
 
@@ -90,10 +90,10 @@ const Header = (props: Props) => {
       </div>
 
       {showSearch && (
-        <div className='absolute left-0 m-0 w-full top-20 h-[60px] flex items-center'>
-          <div className='w-full flex items-center rounded-md  p-4 bg-white'>
-            <input autoFocus className='w-full rounded-md  bg-white outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
-              placeholder="Search for a movie or tv show...."
+        <div className='absolute right-0 m-2 top-14 h-[60px] flex items-center'>
+          <div className='flex items-center rounded-md  p-4 bg-black-light'>
+            <input autoFocus className='rounded-md  bg-black-light outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
+              placeholder="Enter a movie or tv show...."
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
             />
