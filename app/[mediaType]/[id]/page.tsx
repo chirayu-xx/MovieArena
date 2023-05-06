@@ -31,9 +31,7 @@ const DetailPage = (props: Props) => {
       (element: Element) => element.type === "Trailer"
     );
   }
-
   
-
 
   useEffect(() => {
     const fetchImageData = async () => {

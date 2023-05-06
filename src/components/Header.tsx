@@ -54,7 +54,7 @@ const Header = (props: Props) => {
   };
 
   const openSearch = () => {
-    setShowSearch(true);
+    setShowSearch(!showSearch);
   };
 
 
@@ -89,8 +89,8 @@ const Header = (props: Props) => {
         <HiOutlineSearch className='text-white block md:hidden' onClick={openSearch} />
       </div>
 
-      {showSearch && (
-        <div className='absolute right-0 m-2 top-14 h-[60px] flex items-center'>
+      
+        <div className={`absolute ${showSearch ? 'right-0' : 'right-[-1000px]'} transition-all ease-out duration-500 m-2 top-14 h-[60px] flex items-center`}>
           <div className='flex items-center rounded-md  p-4 bg-black-light'>
             <input autoFocus className='rounded-md  bg-black-light outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
               placeholder="Enter a movie or tv show...."
@@ -100,7 +100,6 @@ const Header = (props: Props) => {
             <VscChromeClose className='cursor-pointer text-base flex-shrink-0 ml-4' onClick={() => setShowSearch(false)} />
           </div>
         </div>
-      )}
 
     </header>
   )

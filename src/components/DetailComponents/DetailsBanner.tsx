@@ -41,7 +41,7 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
 
 
   return (
-    <div className="w-full bg-black pt-[200px] mb-[50px]">
+    <div className="w-full bg-black pt-[150px] mb-[50px]">
       {!loading ? (
         <>
           {!!data ? (
@@ -56,7 +56,7 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
               <div className="w-full h-[250px] bg-gradient-to-b from-white/0 via-black to-black absolute bottom-0 left-0"></div>
               {/* contentwrapper */}
               <div className="w-full max-w-[1200px] mx-auto px-10 md:px-20">
-                <div className="flex relative flex-col md:flex-row gap-[25px]">
+                <div className="flex relative flex-col md:flex-row gap-20">
                   {/* left */}
                   <div className="shrink-0">
                     {data.poster_path ? (
@@ -94,13 +94,13 @@ const DetailsBanner = ({ video, crew, data, loading }: Props) => {
                           setShow(true);
                           setVideoId(video?.key);
                         }}
-                        className="flex items-center  cursor-pointer  justify-center"
+                        className="flex items-center cursor-pointer  justify-center rounded-full p-2  border-black-light border-2 group"
                       >
                         <BsPlay
-                          className="flex items-center  cursor-pointer"
+                          className="group-hover:text-black-light text-center  cursor-pointer"
                           size={"55px"}
                         />
-                        <span className="text-basemd:text-2xl">
+                        <span className="group-hover:text-black-light text-base md:text-2xl m-2">
                           Watch Trailer
                         </span>
                       </div>
