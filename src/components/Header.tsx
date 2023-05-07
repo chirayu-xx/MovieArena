@@ -1,6 +1,6 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation';
-import React from 'react'
+import React, { useRef } from 'react'
 import { HiOutlineSearch } from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
@@ -18,7 +18,11 @@ const Header = (props: Props) => {
   const [query, setQuery] = useState("");
   const pathname = usePathname();
   const [showheader, setHeader] = useState(true);
-  const [showMenu, setShowMenu] = useState(true);
+  const [showMenu, setShowMenu] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+
+
 
   const controlNavbar =() => {
     if (window.scrollY > 200) {
@@ -50,10 +54,15 @@ const Header = (props: Props) => {
   const searchQueryHandler = (event: any) => {
     if (event.key === "Enter" && query.length > 0) {
       router.push(`/search/${query}`);
+      setQuery("");
     }
   };
 
   const openSearch = () => {
+    const inputElement = inputRef.current;
+    if(inputElement && !showSearch){
+      inputElement.focus();
+    }
     setShowSearch(!showSearch);
   };
 
@@ -86,18 +95,20 @@ const Header = (props: Props) => {
             <SlMenu onClick={() => setShowMenu(!showMenu)} className="text-white" />
         }
 
-        <HiOutlineSearch className='text-white block md:hidden' onClick={openSearch} />
+        <HiOutlineSearch className='text-white block p-2 hover:text-black-light md:hidden' onClick={openSearch} />
       </div>
 
       
         <div className={`absolute ${showSearch ? 'right-0' : 'right-[-1000px]'} transition-all ease-out duration-500 m-2 top-14 h-[60px] flex items-center`}>
           <div className='flex items-center rounded-md  p-4 bg-black-light'>
-            <input autoFocus className='rounded-md  bg-black-light outline-none border-0 rounded-l-lg pl-4 pr-15 text-base' type="text"
+            <input autoFocus= {showSearch} className='rounded-md  bg-black-light outline-none border-0 rounded-l-lg pl-4 pr-15 text-base text-white' type="text"
               placeholder="Enter a movie or tv show...."
+              ref={inputRef}
+              value={query}
               onChange={(e) => setQuery(e.target.value)}
               onKeyUp={searchQueryHandler}
             />
-            <VscChromeClose className='cursor-pointer text-base flex-shrink-0 ml-4' onClick={() => setShowSearch(false)} />
+            <VscChromeClose className='cursor-pointer text-base flex-shrink-0 ml-4 text-white' onClick={() => setShowSearch(false)} />
           </div>
         </div>
 

@@ -59,10 +59,10 @@ const HomeBanner = (props: Props) => {
             )}
             <div className="absolute flex mix-blend-multiply w-full h-full bg-[#000000]">
               <h1
-                className="text-left absolute top-1/3 lg:top-20 left-20 max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[100px]"
+                className="text-left absolute top-1/3 lg:top-20 left-20 max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[150px] overflow-hidden"
                 style={{ fontWeight: "900" }}
               >
-                {bannerData?.title}
+                {bannerData?.title.split(":")}
               </h1>
             </div>
             <div className="leading-[24px] pb-10 lg:pb-32 z-20 p-2 md:p-5 lg:p-10 lg:px-20 text-base text-white text-left flex justify-between gap-2 w-full items-end ">
@@ -76,9 +76,9 @@ const HomeBanner = (props: Props) => {
               </Link>
               <button className="modalButton" onClick={() => setMute(!mute)}>
               {mute? (
-                <BsVolumeMute className="h-12 w-12 border border-black-light rounded-full p-2 hover:bg-black-light" />
+                <BsVolumeMute className="h-12 w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
               ) : (
-                <BsVolumeUp className="h-12  w-12 border border-black-light rounded-full p-2 hover:bg-black-light" />
+                <BsVolumeUp className="h-12  w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
                 )}
             </button>
             </div>
