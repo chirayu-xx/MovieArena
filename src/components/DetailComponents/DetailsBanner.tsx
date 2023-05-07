@@ -12,6 +12,7 @@ import VideoPopup from "./VideoPopup";
 import { Img } from "../LazyLoadImage";
 import DetailSkeleton from "../Skeleton";
 
+
 type Props = {
   video: string;
   crew: string;

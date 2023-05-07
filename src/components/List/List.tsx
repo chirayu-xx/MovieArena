@@ -5,7 +5,8 @@ import SwitchTab from "./SwitchTab";
 import { useState } from "react";
 import useFetch from "@/hooks/useFetch";
 import Carousel from "./Carousel";
-import Skeleton from "../Skeleton";
+import { motion } from "framer-motion";
+
 
 type Props = {
   title: string;
@@ -31,7 +32,8 @@ const List = ({ title, tabs, endpoint }: Props) => {
   };
 
   return (
-    <div className="flex flex-col gap-2 lg:min-h-[270px] ">
+    <motion.div 
+    className="flex flex-col gap-2 lg:min-h-[270px] ">
        <div className="flex justify-center w-full py-2">
         <div className="flex gap-2 justify-between w-full items-center">
           <h1 className="text-xl md:text-3xl text-white font-semibold bg-transparent">
@@ -45,7 +47,7 @@ const List = ({ title, tabs, endpoint }: Props) => {
         loading={loading}
         data={data?.results}
         />
-    </div>
+    </motion.div>
   );
 };
 

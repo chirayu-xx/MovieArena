@@ -9,7 +9,7 @@ import { fetchDataFromApi } from "../utils/api";
 import ReactPlayer from "react-player/youtube";
 import Link from "next/link";
 import { BsVolumeMute, BsVolumeUp } from "react-icons/bs";
-// import { videoIdFetch } from '../utils/videoIdFetch';
+import { motion } from "framer-motion";
 
 type Props = {};
 
@@ -52,36 +52,94 @@ const HomeBanner = (props: Props) => {
                   width={"100%"}
                   height={"100%"}
                   playing
-                  muted = {mute}
+                  muted={mute}
                   loop
                 />
               </div>
             )}
-            <div className="absolute flex mix-blend-multiply w-full h-full bg-[#000000]">
-              <h1
+            <motion.div
+            
+              className="absolute flex mix-blend-multiply w-full h-full bg-[#000000]">
+              <motion.h1
+               drag
+               dragConstraints={{
+                 top: -10,
+                 left: -10,
+                 right: 10,
+                 bottom: 10,
+               }} 
+                initial={{
+                  opacity: 0,
+                  y: 200
+                }}
+                whileInView={{
+                  opacity: 1,
+                  y: 0
+                }}
+                viewport={{ once: true }}
+                transition={{
+                  type: "spring",
+                  stiffness: 260,
+                  damping: 100,
+                  duration: 1,
+                  delay: 1
+                }}
                 className="text-left absolute top-1/3 lg:top-20 left-20 max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[150px] overflow-hidden"
                 style={{ fontWeight: "900" }}
               >
                 {bannerData?.title.split(":")}
-              </h1>
-            </div>
-            <div className="leading-[24px] pb-10 lg:pb-32 z-20 p-2 md:p-5 lg:p-10 lg:px-20 text-base text-white text-left flex justify-between gap-2 w-full items-end ">
-              <div className="hidden md:flex lg:max-w-2xl flex-col">
+              </motion.h1>
+            </motion.div>
+            <div className="leading-[24px] pb-10 lg:pb-20 z-20 p-2 md:p-5 lg:p-10 lg:px-20 text-base text-white text-left flex justify-between gap-2 w-full items-end ">
+              <motion.div
+                initial={{
+                  y: 500,
+                }}
+                animate={{
+                  y: 0,
+                }}
+                viewport={{ once: true }}
+                transition={{
+                  type: "spring",
+                  stiffness: 250,
+                  damping: 15,
+                  duration: 1,
+                  delay: 1
+                }}
+                className="hidden md:flex lg:max-w-2xl flex-col">
                 <span className="text-xl">Overview :</span>
                 <span className="opacity-50">{bannerData?.overview}</span>
-              </div>
-              <div className="flex justify-end items-center">
-              <Link href={`/movie/${bannerData?.id}`}>
-              <button className="md:mx-20 mx-4 border-black-light hover:bg-black-light p-2 border-2 rounded-full">Watch Now</button>
-              </Link>
-              <button className="modalButton" onClick={() => setMute(!mute)}>
-              {mute? (
-                <BsVolumeMute className="h-12 w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
-              ) : (
-                <BsVolumeUp className="h-12  w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
-                )}
-            </button>
-            </div>
+              </motion.div>
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: 200,
+                  
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                viewport={{ once: true }}
+                transition={{
+                  type: "spring",
+                  stiffness: 250,
+                  damping: 15,
+                  duration: 1,
+                  delay: 1
+                }}
+                className="flex justify-end items-center">
+                <Link href={`/movie/${bannerData?.id}`}>
+                  <button className="md:mx-20 mx-4 border-black-light hover:bg-black-light p-2 border-2 rounded-full">Watch Now</button>
+                </Link>
+                <button className="modalButton" onClick={() => setMute(!mute)}>
+                  {mute ? (
+                    <BsVolumeMute className="h-12 w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
+                  ) : (
+                    <BsVolumeUp className="h-12  w-12 border-2 border-black-light rounded-full p-2 hover:bg-black-light" />
+                  )}
+                </button>
+              </motion.div>
             </div>
           </div>
         </>
