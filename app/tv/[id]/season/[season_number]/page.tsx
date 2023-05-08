@@ -8,8 +8,7 @@ import { fetchImageUrl } from '@/src/utils/urlFetch';
 import { useParams } from 'next/navigation';
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux';
-
-
+import {motion} from 'framer-motion'
 
 type Props = {}
 
@@ -26,10 +25,21 @@ const Seasonpage = (props: Props) => {
   const { data, loading } = useFetch(`/tv/${id}/season/${season_number}`);
 
   return (
-    <div className = 'min-h-screen'>
+    <motion.div 
+    initial={{opacity:0 , y:20}}
+    animate={{opacity:1, y:0}}
+    exit={{opacity:0 , y:20}}
+    transition={{
+      type: "spring",
+      stiffness: 260,
+      damping: 15,
+      duration: 1,
+      delay: 1
+    }}
+    className = 'min-h-screen'>
         <SeasonBanner loading = {loading} data = {data} />
         <Episodes episodes = {data?.episodes}/>
-    </div>
+    </motion.div>
   )
 }
 

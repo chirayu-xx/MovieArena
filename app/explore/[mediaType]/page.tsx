@@ -12,6 +12,7 @@ import { getApiConfiguration, getGenres } from "@/src/redux/features/homeSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/src/redux/store";
 import { fetchGenres, fetchImageUrl } from "@/src/utils/urlFetch";
+import {motion} from 'framer-motion'
 
 type Props = {};
 
@@ -131,7 +132,18 @@ const Explore = (props: Props) => {
 
 
   return (
-    <div className="min-[700px] py-[100px]">
+    <motion.div 
+    initial={{opacity:0 , y:20}}
+    animate={{opacity:1, y:0}}
+    exit={{opacity:0 , y:20}}
+    transition={{
+      type: "spring",
+      stiffness: 260,
+      damping: 15,
+      duration: 1,
+      delay: 1
+    }}
+    className="min-[700px] py-[100px]">
       <div className="flex flex-col gap-3 md:gap-6">
         <div className="flex w-full justify-between mb-10 px-10 flex-col md:flex-row">
           <div className="text-2xl md:text-3xl text-white">
@@ -193,7 +205,7 @@ const Explore = (props: Props) => {
           </>
         )}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

@@ -11,6 +11,7 @@ import useFetch from "@/hooks/useFetch";
 import { fetchImageUrl } from "@/src/utils/urlFetch";
 import { getApiConfiguration } from "@/src/redux/features/homeSlice";
 import { useDispatch } from "react-redux";
+import {motion} from 'framer-motion'
 import SeasonList from "@/src/components/SeasonList/SeasonList";
 
 type Props = {};
@@ -41,7 +42,18 @@ const DetailPage = (props: Props) => {
     fetchImageData();
   }, []);
   return (
-    <div>
+    <motion.div
+    initial={{opacity:0 , y:20}}
+    animate={{opacity:1, y:0}}
+    exit={{opacity:0 , y:20}}
+    transition={{
+      type: "spring",
+      stiffness: 260,
+      damping: 15,
+      duration: 1,
+      delay: 1
+    }}
+    >
       <DetailsBanner data={mediaData} loading={dataLoading} video={data?.results?.[index]} crew={credits?.crew} />
       <Cast data={credits?.cast} loading={creditsLoading} />
       {
@@ -53,7 +65,7 @@ const DetailPage = (props: Props) => {
       }
       <Similar mediaType={mediaType} id={id} />
       <Recommendation mediaType={mediaType} id={id} />
-    </div>
+    </motion.div>
   );
 };
 

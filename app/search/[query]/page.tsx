@@ -4,8 +4,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { searchDataFromApi } from "@/src/utils/searchApi";
-import { Triangle } from "react-loader-spinner";
 import MovieCard from "@/src/components/MovieCard";
+import {motion} from 'framer-motion'
 import { fetchImageUrl } from "@/src/utils/urlFetch";
 import { getApiConfiguration } from "@/src/redux/features/homeSlice";
 import { useDispatch } from "react-redux";
@@ -66,7 +66,18 @@ const SearchPage = (props: Props) => {
   
 
   return (
-    <div className="min-h-screen flex flex-col gap-10">
+    <motion.div 
+    initial={{opacity:0 , y:20}}
+    animate={{opacity:1, y:0}}
+    exit={{opacity:0 , y:20}}
+    transition={{
+      type: "spring",
+      stiffness: 260,
+      damping: 15,
+      duration: 1,
+      delay: 1
+    }}
+    className="min-h-screen flex flex-col gap-10">
       {loading && <div className="min-h-screen w-full flex items-center justify-center"><Loader/></div>}
       {!loading && (
         <>
@@ -97,7 +108,7 @@ const SearchPage = (props: Props) => {
           )}
         </>
       )}
-    </div>
+    </motion.div>
   );
 };
 

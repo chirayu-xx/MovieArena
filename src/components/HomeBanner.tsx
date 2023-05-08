@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 type Props = {};
 
 const HomeBanner = (props: Props) => {
-  const { data, loading } = useFetch("/movie/upcoming");
+  const { data, loading } = useFetch("/movie/now_playing");
   const [bannerData, setBannerData] = useState(null);
   const [mute, setMute] = useState(true);
   const [videoId, setVideoId] = useState(null);
@@ -80,7 +80,7 @@ const HomeBanner = (props: Props) => {
                 transition={{
                   type: "spring",
                   stiffness: 260,
-                  damping: 100,
+                  damping: 15,
                   duration: 1,
                   delay: 1
                 }}
@@ -93,9 +93,11 @@ const HomeBanner = (props: Props) => {
             <div className="leading-[24px] pb-10 lg:pb-20 z-20 p-2 md:p-5 lg:p-10 lg:px-20 text-base text-white text-left flex justify-between gap-2 w-full items-end ">
               <motion.div
                 initial={{
-                  y: 500,
+                  opacity:0,
+                  y: 100,
                 }}
                 animate={{
+                  opacity:1,
                   y: 0,
                 }}
                 viewport={{ once: true }}

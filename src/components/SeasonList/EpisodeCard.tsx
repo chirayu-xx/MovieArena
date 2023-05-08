@@ -5,6 +5,7 @@ import { Img } from "../LazyLoadImage";
 import { RootState } from "@/src/redux/store";
 import dayjs from "dayjs";
 import CircleRating from "../List/CircleRating";
+import {motion} from 'framer-motion'
 
 type Props = {
     episode: any
@@ -21,7 +22,18 @@ const EpisodeCard = ({ episode }: Props) => {
         return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
     };
     return (
-        <div className="flex flex-col md:flex-row gap-3 items-start justify-start">
+        <motion.div 
+        initial={{opacity: 0, y:50}}
+        whileInView={{opacity: 1, y:0}}
+        transition={{
+            type: "spring",
+            stiffness: 260,
+            damping: 15,
+            duration: 1,
+            delay: 0.1
+          }}
+          viewport={{once: true}}
+        className="flex flex-col md:flex-row gap-3 items-start justify-start">
             <div className='max-w-sm lg:min-w-[300px] relative'>
                 <span className="absolute text-center z-10 text-white text-base md:text-lg top-[-10px] left-[-10px] rounded-full bg-gradient-to-r from-black-lighter via-black-light to-black px-4 py-[7px] md:py-[6px]">{episode.episode_number}</span>
                 <Img src={url.backdrop + episode.still_path} className="z-0 object-cover h-full rounded-md w-full object-center" />
@@ -52,7 +64,7 @@ const EpisodeCard = ({ episode }: Props) => {
                     </div>
                 )}
             </div>
-        </div>
+        </motion.div>
     )
 }
 export default EpisodeCard;
