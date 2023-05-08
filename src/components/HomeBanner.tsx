@@ -84,7 +84,7 @@ const HomeBanner = (props: Props) => {
                   duration: 1,
                   delay: 1
                 }}
-                className="text-left absolute top-1/3 lg:top-20 left-20 max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[150px] overflow-hidden"
+                className="text-left absolute top-1/3 lg:top-20 lg:left-20 max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[150px] overflow-hidden"
                 style={{ fontWeight: "900" }}
               >
                 {bannerData?.title.split(":")}
