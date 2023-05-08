@@ -5,7 +5,7 @@ import { BsPlay } from "react-icons/bs";
 
 type Props = {
   data: any;
-  loading: Boolean;
+  loading: boolean;
 };
 
 const VideosSection = ({ data, loading }: Props) => {

@@ -2,10 +2,10 @@ import React from 'react'
 import ReactPlayer from 'react-player'
 
 type Props = {
-    show: Boolean,
-    setShow: (open: Boolean) => void,
-    videoId: string,
-    setVideoId: (open: string) => void,
+    show: boolean,
+    setShow: (open: boolean) => void,
+    videoId: any,
+    setVideoId: any
 }
 
 const VideoPopup = ({show, setShow, videoId, setVideoId}: Props) => {
