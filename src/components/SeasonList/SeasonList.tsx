@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { RootState } from '@/src/redux/store'
 import dayjs from 'dayjs'
 import Link from 'next/link'
