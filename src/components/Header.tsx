@@ -1,7 +1,7 @@
 'use client'
 import { useRouter, usePathname } from 'next/navigation';
 import React, { useRef } from 'react'
-import { HiOutlineSearch } from "react-icons/hi";
+import { HiOutlineSearch} from "react-icons/hi";
 import { useState, useEffect } from "react";
 import { VscChromeClose } from "react-icons/vsc";
 import { SlMenu } from "react-icons/sl";
@@ -94,8 +94,7 @@ const Header = (props: Props) => {
             <VscChromeClose onClick={() => setShowMenu(!showMenu)} className='text-white' /> :
             <SlMenu onClick={() => setShowMenu(!showMenu)} className="text-white" />
         }
-
-        <HiOutlineSearch color='white' className='block p-2 hover:text-black-light md:hidden' onClick={openSearch} />
+        <HiOutlineSearch className='text-white' onClick={openSearch}/>
       </div>
 
       
