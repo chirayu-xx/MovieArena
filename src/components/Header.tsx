@@ -95,7 +95,7 @@ const Header = (props: Props) => {
             <SlMenu onClick={() => setShowMenu(!showMenu)} className="text-white" />
         }
 
-        <HiOutlineSearch className='text-white block p-2 hover:text-black-light md:hidden' onClick={openSearch} />
+        <HiOutlineSearch color='white' className='block p-2 hover:text-black-light md:hidden' onClick={openSearch} />
       </div>
 
       
