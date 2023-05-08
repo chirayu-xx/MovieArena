@@ -3,7 +3,6 @@
 import { searchDataFromApi } from "@/src/utils/searchApi";
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Triangle } from "react-loader-spinner";
 import Select from "react-select";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "@/src/components/MovieCard";
@@ -13,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/src/redux/store";
 import { fetchGenres, fetchImageUrl } from "@/src/utils/urlFetch";
 import {motion} from 'framer-motion'
+import Loader from "@/src/components/Loader";
 
 type Props = {};
 
@@ -82,20 +82,6 @@ const Explore = (props: Props) => {
       }
       setPageNum((prev) => prev + 1);
     });
-  };
-  const Loader = () => {
-    return (
-      <div className="flex w-full min-h-screen items-center justify-center">
-        <Triangle
-          height="100"
-          width="100"
-          color="#3A6130"
-          ariaLabel="triangle-loading"
-          wrapperStyle={{}}
-          visible={true}
-        />
-      </div>
-    );
   };
 
   useEffect(() => {
@@ -179,7 +165,7 @@ const Explore = (props: Props) => {
             />
           </div>
         </div>
-        {/* {loading && <Loader/>} */}
+        {loading && <Loader/>}
         {!loading && (
           <>
             {data?.results?.length > 0 ? (
@@ -188,7 +174,7 @@ const Explore = (props: Props) => {
                 dataLength={data?.results?.length || []}
                 next={fetchNextPageData}
                 hasMore={pageNum <= data?.total_pages}
-                loader={<Loader />}
+
               >
                 {data?.results?.map((item, index) => {
                   if (item.media_type === "person") return;

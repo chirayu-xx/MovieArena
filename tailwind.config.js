@@ -23,7 +23,18 @@ module.exports = {
       aspectRatio:{
         '1/1.5' : '1 / 1.5'
       }
+      ,
+      keyframes:{
+        roll:{
+          '0%': {top:'0'},
+          '100%': {top : '-15px'},
+        }
+      },
+      animation:{
+        'loading' : 'roll 150ms infinite'
+      }
     },
+
   },
   plugins: [],
 }
