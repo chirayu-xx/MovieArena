@@ -17,11 +17,11 @@ type Props = {
 const List = ({ title, tabs, endpoint }: Props) => {
   const [category, setCategory] = useState(tabs[0].toLowerCase());
 
-  let fetchUrl = `${endpoint}/${category}`;
+  let fetchUrl = `/${category}${endpoint}`;
   if (
-    endpoint === "/popular" ||
-    endpoint === "/top_rated" ||
-    endpoint === "/now_playing"
+    endpoint === "upcoming" ||
+    endpoint === "top_rated" ||
+    endpoint === "now_playing"
   ) {
     fetchUrl = `${category}/${endpoint}`;
   }

@@ -39,8 +39,8 @@ export default function Home({ }: Props) {
         <HomeBanner />
         <div className="px-10 relative lg:px-32 mx-2 z-10">
         <div className="flex flex-col gap-10 z-10">
-          <List title="Trending" tabs={["Day", "Week"]} endpoint="/trending/all" />
-          <List title="Now Playing" tabs={["Movie"]} endpoint="/now_playing" />
+          {/* <List title="Now" tabs={["Day", "Week"]} endpoint="/trending/all" /> */}
+          <List title="Upcoming" tabs={["Movie"]} endpoint="/upcoming" />
           <List title="What's Popular" tabs={["Movie", "Tv"]} endpoint="/popular" />
           <List title="Top Rated" tabs={["Movie", "Tv"]} endpoint="/top_rated" />
         </div>

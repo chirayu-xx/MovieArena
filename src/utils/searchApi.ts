@@ -14,6 +14,7 @@ export const searchDataFromApi = async (url: string, params?: any) => {
     try {
 
     const fetchUrl = `${BASE_URL}/${url}`
+    console.log(url);
     const { data } = await axios.get(fetchUrl, {
         headers,
         params,

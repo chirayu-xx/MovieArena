@@ -58,7 +58,7 @@ const Explore = (props: Props) => {
   }, [])
   const fetchInitialData = () => {
     setLoading(false);
-    searchDataFromApi(`/discover/${mediaType}?api_key=${apiKey}`, filters).then(
+    searchDataFromApi(`discover/${mediaType}?api_key=${apiKey}&region=IN`, filters).then(
       (res) => {
         setData(res);
         setPageNum((prev) => prev + 1);
@@ -69,7 +69,7 @@ const Explore = (props: Props) => {
 
   const fetchNextPageData = () => {
     searchDataFromApi(
-      `/discover/${mediaType}?api_key=${apiKey}&page=${pageNum}`,
+      `discover/${mediaType}?api_key=${apiKey}&page=${pageNum}`,
       filters
     ).then((res) => {
       if (data?.results) {
