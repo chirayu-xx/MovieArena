@@ -24,7 +24,7 @@ const SearchPage = (props: Props) => {
   const fetchInitialData = () => {
     setLoading(true);
     searchDataFromApi(
-      `/search/multi?api_key=${apiKey}&query=${query}&page=${pageNum}`
+      `search/multi?api_key=${apiKey}&query=${query}&page=${pageNum}`
     ).then((res) => {
       setData(res);
       setPageNum((prev) => prev + 1);
@@ -36,7 +36,7 @@ const SearchPage = (props: Props) => {
     setLoading(false);
     console.log("fetching next data")
     searchDataFromApi(
-      `/search/multi?api_key=${apiKey}&query=${query}&page=${pageNum}`
+      `search/multi?api_key=${apiKey}&query=${query}&page=${pageNum}`
     ).then((res) => {
       if (data?.results) {
         setData({
