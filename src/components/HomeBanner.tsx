@@ -25,11 +25,15 @@ const HomeBanner = (props: Props) => {
       var index = trailerData?.results?.findIndex((element: Element) =>
         element.name.includes("Official Trailer")
       );
-      if (index === -1) {
-        index = trailerData?.results.findIndex(
-          (element: Element) => element.type === "Trailer"
-        );
-      }
+      const types = ["Trailer", "Teaser", "Clip"];
+
+      index = types.reduce((acc, type) => {
+        return acc === -1
+          ? trailerData?.results.findIndex(
+              (element: Element) => element.type === type
+            )
+          : acc;
+      }, index);
       setVideoId(trailerData?.results?.[index]?.key);
     };
     if (data) {
@@ -55,24 +59,22 @@ const HomeBanner = (props: Props) => {
                 />
               </div>
             )}
-            <motion.div
-            
-              className="absolute flex mix-blend-multiply w-full h-full bg-[#000000]">
+            <motion.div className="absolute flex mix-blend-multiply w-full h-full bg-[#000000]">
               <motion.h1
-               drag
-               dragConstraints={{
-                 top: -10,
-                 left: -10,
-                 right: 10,
-                 bottom: 10,
-               }} 
+                drag
+                dragConstraints={{
+                  top: -10,
+                  left: -10,
+                  right: 10,
+                  bottom: 10,
+                }}
                 initial={{
                   opacity: 0,
-                  y: 200
+                  y: 200,
                 }}
                 whileInView={{
                   opacity: 1,
-                  y: 0
+                  y: 0,
                 }}
                 viewport={{ once: true }}
                 transition={{
@@ -80,7 +82,7 @@ const HomeBanner = (props: Props) => {
                   stiffness: 260,
                   damping: 15,
                   duration: 1,
-                  delay: 1
+                  delay: 1,
                 }}
                 className="text-left absolute top-1/3 lg:top-12 lg:left-[30px] max-w-5xl p-3 md:p-10 text-white text-[75px] md:text-[150px] overflow-hidden"
                 style={{ fontWeight: "900" }}
@@ -91,11 +93,11 @@ const HomeBanner = (props: Props) => {
             <div className="leading-[24px] pb-10 lg:pb-20 z-20 p-2 md:p-5 lg:p-10 lg:px-20 text-base text-white text-left flex justify-between gap-2 w-full items-end ">
               <motion.div
                 initial={{
-                  opacity:0,
+                  opacity: 0,
                   y: 100,
                 }}
                 animate={{
-                  opacity:1,
+                  opacity: 1,
                   y: 0,
                 }}
                 viewport={{ once: true }}
@@ -104,9 +106,10 @@ const HomeBanner = (props: Props) => {
                   stiffness: 250,
                   damping: 15,
                   duration: 1,
-                  delay: 1
+                  delay: 1,
                 }}
-                className="hidden md:flex lg:max-w-2xl flex-col">
+                className="hidden md:flex lg:max-w-2xl flex-col"
+              >
                 <span className="text-xl">Overview :</span>
                 <span className="opacity-50">{bannerData?.overview}</span>
               </motion.div>
@@ -114,7 +117,6 @@ const HomeBanner = (props: Props) => {
                 initial={{
                   opacity: 0,
                   x: 200,
-                  
                 }}
                 animate={{
                   opacity: 1,
@@ -126,11 +128,14 @@ const HomeBanner = (props: Props) => {
                   stiffness: 250,
                   damping: 15,
                   duration: 1,
-                  delay: 1
+                  delay: 1,
                 }}
-                className="flex justify-end items-center">
+                className="flex justify-end items-center"
+              >
                 <Link href={`/movie/${bannerData?.id}`}>
-                  <button className="md:mx-20 mx-4 border-black-light hover:bg-black-light p-2 border-2 rounded-full">Watch Now</button>
+                  <button className="md:mx-20 mx-4 border-black-light hover:bg-black-light p-2 border-2 rounded-full">
+                    Watch Now
+                  </button>
                 </Link>
                 <button className="modalButton" onClick={() => setMute(!mute)}>
                   {mute ? (
